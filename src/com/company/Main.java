@@ -21,7 +21,7 @@ public class Main {
                 int contentLength = 0;
                 mapParams = new HashMap<String, Object>();
                 while((requestHeader=reader.readLine()) != null && !requestHeader.isEmpty()){
-                    System.out.println(requestHeader);
+                    System.out.println(requestHeader + "每一行");
                     if(requestHeader.startsWith("GET")){
                         int begin = requestHeader.indexOf("/?") + 2;
                         int end = requestHeader.indexOf("HTTP/");
@@ -37,7 +37,8 @@ public class Main {
                         }
                     }
 
-                    if(requestHeader.startsWith("Content-Length")){
+                    if(requestHeader.startsWith("POST")){
+                        System.out.println("每一行: " + requestHeader);
                         int begin = requestHeader.indexOf("Content-Length:") + "Content-Length:".length();
                         String postParamterLength = requestHeader.substring(begin).trim();
                         contentLength = Integer.parseInt(postParamterLength);
@@ -53,7 +54,7 @@ public class Main {
                     System.out.println("POST参数是：" + stringBuffer.toString());
                 }
 
-                File file = new File("");
+                /*File file = new File("");
                 String localPath = file.getCanonicalPath();
                 System.out.println("Project Path:" + localPath);
                 String queryDirPath = localPath + "\\" + mapParams.get("dir_name");
@@ -64,7 +65,7 @@ public class Main {
                 printWriter.println("Content-type:text/html;charset=utf-8");
                 printWriter.println();
                 printWriter.println("type=queryDir&dir_name=" + queryDirPath);
-                returnList(queryDir, printWriter);
+                returnList(queryDir, printWriter);*/
 
                 socket.close();
             }
